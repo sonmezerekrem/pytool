@@ -227,5 +227,3 @@ def rename():
                 i += 1
     print(f"Renamed all files in {inputdir}")
 
-
-rename()
