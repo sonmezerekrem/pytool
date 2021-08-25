@@ -144,7 +144,7 @@ def save_backup_details(information, destination):
 def copier(sourcepath, destinationpath, action, information):
     if os.path.isfile(sourcepath):
         make_directory(destinationpath)
-        if check_existence(sourcepath, destinationpath):
+        if action != 4 and check_existence(sourcepath, destinationpath):
             if action == 1:
                 print(f"Skipping file to prevent overwritten: {sourcepath}")
                 information["skipped"] += 1
@@ -180,8 +180,8 @@ def backup():
         print("One of the paths is not a directory!")
         return
 
-    if action != 1 and action != 2 and action != 3:
-        action = 2
+    if action != 1 and action != 2 and action != 3 and action != 4:
+        action = 4
 
     if re.search(".*20[0-9][0-9]-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])", os.path.basename(destinationpath)):
         newdestination = destinationpath[:-10] + datetime.now().strftime('%Y-%m-%d')
